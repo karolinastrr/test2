@@ -1,8 +1,7 @@
 package zadanie3;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,6 +10,8 @@ public class Main {
 
         Group group1 = new Group("Kwiatuszki");
         Group group2 = new Group("Biedronki");
+
+        List<Group> groups = Arrays.asList(group1, group2);
 
         Person person1 = new Employee("Adam", "Kowalski", "1254379231", "Warsaw", 5000, "Manager");
         Person person2 = new Employee("Alicja", "Laskowska", "76859302861", "Opole", 4000, "Grapgic designer");
@@ -30,6 +31,9 @@ public class Main {
 
         System.out.println(findPersonWithHighestSalary(people));
         savePeopleToFile(peopleToSaveInFile);
+
+        System.out.println();
+        System.out.println(loadPeopleFromFile("plik1.txt", groups));
     }
 
     public static Person findPersonWithHighestSalary(Person[] people) {
@@ -63,5 +67,26 @@ public class Main {
         }
     }
 
+    public static List<Person> loadPeopleFromFile(String path, List<Group> groups) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
+            List<Person> loadedPeople = new ArrayList<>();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] splittedLine = line.split(" ");
+                switch (splittedLine[0]) {
+                    case "student":
+                        Group group = Group.findGroupByName(groups, splittedLine[5]);
+                        loadedPeople.add(new Student(splittedLine[1], splittedLine[2], splittedLine[3], splittedLine[4], group, Double.parseDouble(splittedLine[6])));
+                        break;
+                    case "employee":
+                        loadedPeople.add(new Employee(splittedLine[1], splittedLine[2], splittedLine[3], splittedLine[4], Double.parseDouble(splittedLine[5]), splittedLine[6]));
+                        break;
+                }
+            }
+            return loadedPeople;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

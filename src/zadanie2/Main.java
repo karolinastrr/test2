@@ -21,7 +21,7 @@ public class Main {
         System.out.println(findYearWithMostAppointments(loadedDoctors));
         System.out.println(findTop5DoctorsWithMostAppointments(loadedDoctors));
         System.out.println(findTop5OldestDoctors(loadedDoctors));
-        System.out.println(findPatientsWithAtLeastFiveDifferentDoctors(loadedDoctors));
+        System.out.println(findPatientsWithAtLeastFiveDifferentDoctors(loadedPatients));
         System.out.println(findDoctorsWithOnlyOnePatient(loadedDoctors));
 
         for (Appointment appointment : loadedAppointments) {
@@ -171,44 +171,24 @@ public class Main {
         return doctors.subList(0, Math.min(5, doctors.size()));
     }
 
-    public static List<Patient> findPatientsWithAtLeastFiveDifferentDoctors(List<Doctor> doctors) {
-        Map<Patient, Set<Doctor>> patientDoctors = new HashMap<>();
-
-        for (Doctor doctor : doctors) {
-            List<Appointment> appointments = doctor.getAppointments();
-            for (Appointment appointment : appointments) {
-                Patient patient = appointment.getPatient();
-                Set<Doctor> doctorsSet = patientDoctors.getOrDefault(patient, new HashSet<>());
-                doctorsSet.add(doctor);
-                patientDoctors.put(patient, doctorsSet);
+    public static List<Patient> findPatientsWithAtLeastFiveDifferentDoctors(List<Patient> patients) {
+        List<Patient> patientsWhoVisitedMoreThan5Doctors = new ArrayList<>();
+        for (Patient patient : patients) {
+            if (patient.howManyDoctorsHasVisited() >= 5) {
+                patientsWhoVisitedMoreThan5Doctors.add(patient);
             }
         }
-        List<Patient> qualifyingPatients = new ArrayList<>();
-        for (Map.Entry<Patient, Set<Doctor>> entry : patientDoctors.entrySet()) {
-            if (entry.getValue().size() >= 5) {
-                qualifyingPatients.add(entry.getKey());
-            }
-        }
-
-        return qualifyingPatients;
+        return patientsWhoVisitedMoreThan5Doctors;
     }
 
     public static List<Doctor> findDoctorsWithOnlyOnePatient(List<Doctor> doctors) {
-        Map<Doctor, Set<Patient>> doctorPatientMap = new HashMap<>();
+        List<Doctor> doctorsWithOnlyOnePatient = new ArrayList<>();
         for (Doctor doctor : doctors) {
-            for (Appointment appointment : doctor.getAppointments()) {
-                Patient patient = appointment.getPatient();
-                doctorPatientMap.computeIfAbsent(doctor, k -> new HashSet<>()).add(patient);
+            if (doctor.howManyPatientsHasVisited() == 1) {
+                doctorsWithOnlyOnePatient.add(doctor);
             }
         }
-        List<Doctor> doctorsWithOnePatient = new ArrayList<>();
-        for (Map.Entry<Doctor, Set<Patient>> entry : doctorPatientMap.entrySet()) {
-            if (entry.getValue().size() == 1) {
-                doctorsWithOnePatient.add(entry.getKey());
-            }
-        }
-
-        return doctorsWithOnePatient;
+        return doctorsWithOnlyOnePatient;
     }
 }
 

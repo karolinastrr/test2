@@ -29,4 +29,14 @@ public class Group {
         }
         students.add(student);
     }
+
+    public static Group findGroupByName(List<Group> groups, String name) {
+        for (Group group : groups) {
+            if (group.getName().equals(name)) {
+                return group;
+            }
+        }
+        throw new IllegalArgumentException("Can't find group with name: " + name);
+    }
+
 }

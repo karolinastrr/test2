@@ -2,7 +2,9 @@ package zadanie2;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Patient {
     private int id;
@@ -75,6 +77,14 @@ public class Patient {
             }
         }
         throw new IllegalArgumentException("Patient with id " + id +  " can't be found");
+    }
+
+    public int howManyDoctorsHasVisited() {
+        Set<Doctor> doctorsVisited = new HashSet<>();
+        for (Appointment appointment : appointments) {
+            doctorsVisited.add(appointment.getDoctor());
+        }
+        return doctorsVisited.size();
     }
 
     @Override

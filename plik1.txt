@@ -1,0 +1,10 @@
+employee Adam Kowalski 1254379231 Warsaw 5000.0 Manager
+employee Alicja Laskowska 76859302861 Opole 4000.0 Grapgic designer
+employee Barbara Adamska 67845278923 Łódź 7500.0 Team Leader
+employee Iga Kwiatkowska 46532178945 Warsaw 5000.0 Manager
+student Kamil Sieradzki 93827364532 Gdańsk Kwiatuszki 1500.0
+student Filip Loch 94721649057 Warsaw Kwiatuszki 1200.0
+student Maria Kwiecińska 36271904782 Warsaw Kwiatuszki 1200.0
+student Adrianna Misiewicz 87847362584 Warsaw Biedronki 1600.0
+student Lena Orłowska 89786453863 Kraków Biedronki 1000.0
+student Konrad Orłowski 59786453873 Kraków Biedronki 1070.0

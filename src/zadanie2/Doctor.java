@@ -3,7 +3,9 @@ package zadanie2;
 import javax.print.Doc;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Doctor {
     private int id;
@@ -96,6 +98,14 @@ public class Doctor {
 
     public void addAppointment(Appointment appointment) {
         appointments.add(appointment);
+    }
+
+    public int howManyPatientsHasVisited() {
+        Set<Patient> patientsVisited = new HashSet<>();
+        for (Appointment appointment : appointments) {
+            patientsVisited.add(appointment.getPatient());
+        }
+        return patientsVisited.size();
     }
 
     @Override

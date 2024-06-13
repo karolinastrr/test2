@@ -42,6 +42,6 @@ public class Student extends Person {
 
     @Override
     public String getSaveableData() {
-        return getName() + " " + getSurname() + " " + getPesel() + " " + getCity() + " " + getGroup().getName() + " " + getScholarship() + "\n";
+        return "student " + getName() + " " + getSurname() + " " + getPesel() + " " + getCity() + " " + getGroup().getName() + " " + getScholarship() + "\n";
     }
 }

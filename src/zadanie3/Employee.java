@@ -42,6 +42,6 @@ public class Employee extends Person {
 
     @Override
     public String getSaveableData() {
-        return getName() + " " + getSurname() + " " + getPesel() + " " + getCity() + " " + getSalary() + " " + getPosition() + "\n";
+        return "employee " + getName() + " " + getSurname() + " " + getPesel() + " " + getCity() + " " + getSalary() + " " + getPosition() + "\n";
     }
 }

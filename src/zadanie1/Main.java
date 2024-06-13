@@ -57,14 +57,14 @@ public class Main {
         }
     }
 
-    public static String findTheHighestBoy(List<Child> children) {
+    public static HighestBoyInfo findTheHighestBoy(List<Child> children) {
         Child highestBoy = Child.findFirstBoy(children);
         for (Child child : children) {
             if (child.isBoy() && child.getHeight() > highestBoy.getHeight()) {
                 highestBoy = child;
             }
         }
-        return highestBoy.getName() + " " + highestBoy.getHeight();
+        return new HighestBoyInfo(highestBoy.getName(), highestBoy.getHeight());
     }
 
     public static String findTheHighestGirl(List<Child> children) {
@@ -100,7 +100,7 @@ public class Main {
         return mostBirthsDay;
     }
 
-    public static String findMomBelow25WithChildOver4000(List<Mom> moms) {
+    public static List<String> findMomBelow25WithChildOver4000(List<Mom> moms) {
         if (moms == null) {
             throw new IllegalArgumentException("No data in provided list");
         }
@@ -110,7 +110,7 @@ public class Main {
                 foundMoms.add(mom.getName());
             }
         }
-        return foundMoms.toString();
+        return foundMoms;
     }
 
     public static Map<String, LocalDate> findGirlsThatInheritedNameFromMom(List<Child> children) {
