@@ -70,10 +70,4 @@ public abstract class Person {
     public abstract double getIncome();
 
     public abstract String getSaveableData();
-
-    //    List<Person> newPeople = new ArrayList();
-//    (List<Person> people)
-
-//    Person[] people = new Person[10];
-//    (Person[] people)
 }

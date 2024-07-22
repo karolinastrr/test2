@@ -67,14 +67,14 @@ public class Main {
         return new HighestBoyInfo(highestBoy.getName(), highestBoy.getHeight());
     }
 
-    public static String findTheHighestGirl(List<Child> children) {
+    public static HighestGirlInfo findTheHighestGirl(List<Child> children) {
         Child highestGirl = Child.findFirstGirl(children);
         for (Child child : children) {
             if (child.isGirl() && child.getHeight() > highestGirl.getHeight()) {
                 highestGirl = child;
             }
         }
-        return highestGirl.getName() + " " + highestGirl.getHeight();
+        return new HighestGirlInfo(highestGirl.getName(), highestGirl.getHeight());
     }
 
     public static DayOfWeek dayWithMostBirths(List<Child> children) {
@@ -113,11 +113,11 @@ public class Main {
         return foundMoms;
     }
 
-    public static Map<String, LocalDate> findGirlsThatInheritedNameFromMom(List<Child> children) {
-        Map<String, LocalDate> childrenWithInheritedNames = new HashMap<>();
+    public static List<InheritedNameFromMom> findGirlsThatInheritedNameFromMom(List<Child> children) {
+        List<InheritedNameFromMom> childrenWithInheritedNames = new ArrayList<>();
         for (Child child : children) {
             if (child.isGirl() && child.hasInheritedName()) {
-                childrenWithInheritedNames.put(child.getName(), child.getDateOfBirth());
+                childrenWithInheritedNames.add(new InheritedNameFromMom(child.getName(), child.getDateOfBirth()));
             }
         }
         return childrenWithInheritedNames;

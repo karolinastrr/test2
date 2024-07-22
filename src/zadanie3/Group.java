@@ -24,7 +24,7 @@ public class Group {
     }
 
     public void addStudent(Student student) {
-        if (student == null && students.contains(student)) {
+        if (student == null || students.contains(student)) {
             throw new IllegalArgumentException("Invalid data");
         }
         students.add(student);

@@ -1,11 +1,11 @@
 package zadanie1;
 
-public class HighestBoyInfo {
+public class HighestGirlInfo {
 
     private String name;
     private int height;
 
-    public HighestBoyInfo(String name, int height) {
+    public HighestGirlInfo(String name, int height) {
         this.name = name;
         this.height = height;
     }
@@ -20,7 +20,7 @@ public class HighestBoyInfo {
 
     @Override
     public String toString() {
-        return "HighestBoyInfo{" +
+        return "HighestGirlInfo{" +
                 "name='" + name + '\'' +
                 ", height=" + height +
                 '}';

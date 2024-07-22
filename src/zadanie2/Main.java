@@ -18,7 +18,7 @@ public class Main {
         System.out.println(findDoctorWithMostAppointments(loadedDoctors));
         System.out.println(findPatientWithMostAppointments(loadedPatients));
         System.out.println(findMostPopularSpecialisation(loadedDoctors));
-        System.out.println(findYearWithMostAppointments(loadedDoctors));
+        System.out.println(findYearWithMostAppointments(loadedAppointments));
         System.out.println(findTop5DoctorsWithMostAppointments(loadedDoctors));
         System.out.println(findTop5OldestDoctors(loadedDoctors));
         System.out.println(findPatientsWithAtLeastFiveDifferentDoctors(loadedPatients));
@@ -131,24 +131,24 @@ public class Main {
         return mostPopularSpecialisation;
     }
 
-    public static int findYearWithMostAppointments(List<Doctor> doctors) {
-        Map<Integer, Integer> appointmentCountByYear = new HashMap<>();
-        for (Doctor doctor : doctors) {
-            List<Appointment> appointments = doctor.getAppointments();
-            for (Appointment appointment : appointments) {
-                int year = appointment.getDateOfAppointment().getYear();
-                appointmentCountByYear.put(year, appointmentCountByYear.getOrDefault(year, 0) + 1);
-            }
+    public static int findYearWithMostAppointments(List<Appointment> appointments) {
+        Map<Integer, Integer> yearCountMap = new HashMap<>();
+
+        for (Appointment appointment : appointments) {
+            int year = appointment.getDateOfAppointment().getYear();
+            yearCountMap.put(year, yearCountMap.getOrDefault(year, 0) + 1);
         }
-        int mostAppointmentsYear = 0;
+
+        int yearWithMostAppointments = -1;
         int maxCount = 0;
-        for (Map.Entry<Integer, Integer> entry : appointmentCountByYear.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : yearCountMap.entrySet()) {
             if (entry.getValue() > maxCount) {
                 maxCount = entry.getValue();
-                mostAppointmentsYear = entry.getKey();
+                yearWithMostAppointments = entry.getKey();
             }
         }
-        return mostAppointmentsYear;
+
+        return yearWithMostAppointments;
     }
 
     public static List<Doctor> findTop5OldestDoctors(List<Doctor> doctors) {

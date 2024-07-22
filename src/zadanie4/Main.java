@@ -12,8 +12,6 @@ public class Main {
         List<Figure> figury = Arrays.asList(Figure.createSquare(10), Figure.createCircle(20), Figure.createRectangle(10,20));
         for(Figure f : figury) {
             System.out.println(f);
-            System.out.println(f.getPerimeter());
-            System.out.println(f.getArea());
         }
 
         System.out.println(Figure.findFigureWithBiggestPerimeter(figury));
